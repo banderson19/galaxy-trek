@@ -3,7 +3,7 @@ CREATE TABLE users (
     name VARCHAR,
     auth_id VARCHAR
 );
-// auth_id will be email
+-- auth_id will be email
 
 CREATE TABLE spaceships (
     id SERIAL PRIMARY KEY,

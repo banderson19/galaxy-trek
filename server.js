@@ -7,9 +7,8 @@ const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 const axios = require('axios');
 
-// const LocationsController = require("./controllers/LocationsController");
-
-// const isAuthenticated = require("./middleware/isAuthenticated");
+const SpaceshipsController = require("./controllers/SpaceshipsController");
+const isAuthenticated = require("./middleware/isAuthenticated");
 
 require("dotenv").config();
 
@@ -96,6 +95,8 @@ app.get("/auth/me", (req, res) => {
     return res.status(404).send("user not authenticated");
   }
 });
+
+app.get('/api/spaceships', SpaceshipsController.getAll)
 
 // app.get("/api/locations", isAuthenticated, LocationsController.get);
 // app.post("/api/locations", isAuthenticated, LocationsController.create);
