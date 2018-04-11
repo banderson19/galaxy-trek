@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
+
+import {setSpaceship} from './../../ducks/reducers';
 
 class Market extends Component {
     constructor() {
@@ -21,6 +24,7 @@ class Market extends Component {
     }
 
     render() {
+        const {setSpaceship} = this.props;
         return(
             <div>
                 <h2>Market place</h2>
@@ -37,13 +41,23 @@ class Market extends Component {
                                     width: 400,
                                     height: 300}}>
                                 </div>
+                                <button onClick={ (e) => setSpaceship(spaceship)}>{spaceship.id}</button>
                             </div>
                         )
                     })}
                 </div>
+                <Link to="/dashboard"><button>Back to Dashboard</button></Link>
             </div>
         )
     }
 }
 
-export default Market;
+const mapStatetoProps = (state) => {
+    const {spaceship} = state;
+
+    return {
+        spaceship
+    }
+}
+
+export default connect(mapStatetoProps, {setSpaceship})(Market);

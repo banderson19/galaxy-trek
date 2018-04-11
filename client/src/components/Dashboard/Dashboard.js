@@ -4,18 +4,26 @@ import {Link} from 'react-router-dom';
 
 
 class Dashboard extends Component {
-    constructor() {
-        super()
-    }
 
     render() {
         return(
             <div>
-                <h2>Welcome space traveler</h2>
-                <Link to='market'><button>Market</button></Link>
+                <div>
+                    <h2>Welcome space traveler</h2>
+                    <Link to='market'><button>Market</button></Link>
+                </div>
+                <div>
+                    <p>my ship {this.props.spaceship.name}</p>
+                </div>
             </div>
         )
     }
 }
 
-export default Dashboard;
+const mapStateToProps = state => {
+    return {
+        spaceship: state.spaceship
+    }
+}
+
+export default connect(mapStateToProps)(Dashboard);
