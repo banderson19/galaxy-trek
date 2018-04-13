@@ -1,0 +1,34 @@
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
+
+// import {setSpaceship} from './../../ducks/reducers';
+
+class Destination extends Component {
+    constructor() {
+        super() 
+    }
+
+    render() {
+        return(
+            <div>
+                <h1>Destination page</h1>
+                <Link to="/dashboard"><button>Back to Dashboard</button></Link>
+            </div>
+        )
+    }
+}
+
+
+// const mapStatetoProps = (state) => {
+//     const {spaceship} = state;
+
+//     return {
+//         spaceship
+//     }
+// }
+
+// export default connect(mapStatetoProps, {setSpaceship})(Market);
+
+export default Destination;

@@ -41,7 +41,7 @@ class Market extends Component {
                                     width: 400,
                                     height: 300}}>
                                 </div>
-                                <button onClick={ (e) => setSpaceship(spaceship)}>{spaceship.id}</button>
+                                <button onClick={ (e) => setSpaceship(spaceship)}>Set your spaceship as {spaceship.name}</button>
                             </div>
                         )
                     })}
