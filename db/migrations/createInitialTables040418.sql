@@ -7,16 +7,21 @@ CREATE TABLE users (
 
 CREATE TABLE spaceships (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users,
     name VARCHAR,
     cost INTEGER
 );
 
 CREATE TABLE destinations (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users,
     name VARCHAR,
-    type VARCHAR
+    type VARCHAR,
+    img TEXT,
+    margin_left INTEGER,
+    margin_top INTEGER, 
+    desc TEXT,
+    inhabitable VARCHAR,
+    distance_to INTEGER,
+    radius INTEGER
 );
 
 CREATE TABLE missions (

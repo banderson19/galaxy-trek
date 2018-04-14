@@ -20,6 +20,9 @@ class Dashboard extends Component {
                         <SpaceshipContainer/>    
                         <DestinationContainer/>
                     </div>
+                    <div style={styles.missionContainer}>
+                        <h2>mission status</h2>
+                    </div>
                 </div>
             </div>
         )
@@ -32,9 +35,16 @@ class Dashboard extends Component {
                 flexFlow: 'row wrap',
                 justifyContent: 'center',
                 backgroundColor: 'lightblue',
-                height: 800
-
-
+                height: 650
+            },
+            missionContainer: {
+                display: 'flex',
+                flexFlow: 'row wrap',
+                justifyContent: 'center',
+                backgroundColor: 'grey',
+                height: 400,
+                width: 1200,
+                margin: 'auto'
             }
         }
     }

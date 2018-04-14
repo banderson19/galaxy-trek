@@ -8,16 +8,19 @@ const Auth0Strategy = require("passport-auth0");
 const axios = require('axios');
 
 const SpaceshipsController = require("./controllers/SpaceshipsController");
+const DestinationsController = require("./controllers/DestinationsController");
+
 const isAuthenticated = require("./middleware/isAuthenticated");
 
 require("dotenv").config();
 
 const app = express();
-const port = 3030;
+const port = 4000;
 
 massive(process.env.CONNECTION_STRING).then(db => {
   app.set("db", db);
 });
+
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -97,6 +100,7 @@ app.get("/auth/me", (req, res) => {
 });
 
 app.get('/api/spaceships', SpaceshipsController.getAll)
+app.get('/api/destinations', DestinationsController.getAll)
 
 // app.get("/api/locations", isAuthenticated, LocationsController.get);
 // app.post("/api/locations", isAuthenticated, LocationsController.create);
