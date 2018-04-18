@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import { getVerticalPosition, getHorizontalPosition } from './PositionUtility';
 import axios from 'axios';
+
+import {setDestination} from './../../ducks/reducers';
 
 
 class LocationServices extends Component {
@@ -22,7 +25,7 @@ class LocationServices extends Component {
     }
 
     render() {
-        console.log('this.state.destinations', this.state.destinations)
+        const {setDestination} = this.props;
         const styles = this.styles();
         return (
             <div style={styles.window}>
@@ -35,31 +38,10 @@ class LocationServices extends Component {
                             left: destination.margin_left
                         }}
                         >
-                        <p>{destination.name}</p>
+                        <button onClick={ (e) => setDestination(destination)}>{destination.name}</button>
+                        {/* <p>{destination.name}</p> */}
                     </div>
                 ))}
-
-                {/* {this.state.destinations.map(destination => {
-                    return(
-                        <div key={destination.id} style={styles.destination}>
-                            <div>
-                                <h3>{destination.name}</h3>
-                            </div>
-                        </div>
-                    )
-                })} */}
-                {/* {[
-                    1, 1
-                ].map((item, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            ...styles.box,
-                            top: getVerticalPosition(),
-                            left: getHorizontalPosition()
-                        }}
-                        />
-                ))} */}
             </div>
         )
     }
@@ -67,9 +49,6 @@ class LocationServices extends Component {
     styles = () => {
         return {
             map: {
-                width: 50,
-                height: 50,
-                backgroundColor: 'blue',
                 position: 'relative'
             },
             window: {
@@ -83,4 +62,12 @@ class LocationServices extends Component {
     }
 }
 
-export default LocationServices;
+const mapStateToProps = (state) => {
+    const {destination} = state;
+
+    return {
+        destination
+    }
+}
+
+export default connect(mapStateToProps, {setDestination})(LocationServices);

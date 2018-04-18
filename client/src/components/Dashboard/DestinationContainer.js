@@ -11,7 +11,26 @@ class DestinationContainer extends Component {
         const styles = this.styles();
         return (
             <div style={styles.destinationBoard}>
-                <Link to='/destination'><button>Destination</button></Link>
+                <div>
+                    <Link to='/destination'><button>Destination</button></Link>
+                </div>
+                <div>
+                    <h2>{this.props.destination.name}</h2>
+                    <div style={{
+                        backgroundImage: `url(${this.props.destination.img})`,
+                        backgroundPostition: 'center',
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat',
+                        width: 400,
+                        height: 300,
+                        marginTop: 25                  
+                    }}></div>
+                <div>
+                    {/* <h4>{this.props.destination.description}</h4>
+                    <h4>Inhabitable: {this.props.destination.inhabitable}</h4>
+                    <h4>{this.props.destination.destance_to} light years away</h4> */}
+                </div>
+                </div>
             </div>
         )
     }
@@ -32,7 +51,7 @@ class DestinationContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        spaceship: state.spaceship
+        destination: state.destination
     }
 }
 

@@ -95,6 +95,7 @@ app.get("/auth/me", (req, res) => {
   if (req.isAuthenticated()) {
     return res.send(req.user);
   } else {
+    
     return res.status(404).send("user not authenticated");
   }
 });

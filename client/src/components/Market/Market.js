@@ -13,7 +13,7 @@ class Market extends Component {
         }
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         axios({
             method: 'GET', 
             url: 'http://localhost:3030/api/spaceships'
@@ -52,7 +52,7 @@ class Market extends Component {
     }
 }
 
-const mapStatetoProps = (state) => {
+const mapStateToProps = (state) => {
     const {spaceship} = state;
 
     return {
@@ -60,4 +60,4 @@ const mapStatetoProps = (state) => {
     }
 }
 
-export default connect(mapStatetoProps, {setSpaceship})(Market);
+export default connect(mapStateToProps, {setSpaceship})(Market);
