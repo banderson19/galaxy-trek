@@ -15,7 +15,7 @@ const isAuthenticated = require("./middleware/isAuthenticated");
 require("dotenv").config();
 
 const app = express();
-const port = 4000;
+const port = 4001;
 
 massive(process.env.CONNECTION_STRING).then(db => {
   app.set("db", db);
@@ -95,7 +95,7 @@ app.get("/auth/me", (req, res) => {
   if (req.isAuthenticated()) {
     return res.send(req.user);
   } else {
-    
+
     return res.status(404).send("user not authenticated");
   }
 });

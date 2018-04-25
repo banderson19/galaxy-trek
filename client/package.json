@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "bootbox": "^4.4.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "react-modal": "^3.4.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-s3": "^1.2.4",

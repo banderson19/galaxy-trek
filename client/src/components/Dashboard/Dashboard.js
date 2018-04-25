@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 import SpaceshipContainer from './SpaceshipContainer';
 import DestinationContainer from './DestinationContainer';
+import MissionContainer from './../MissionStatus/MissionContainer';
 
 
 class Dashboard extends Component {
@@ -21,7 +22,9 @@ class Dashboard extends Component {
                         <DestinationContainer/>
                     </div>
                     <div style={styles.missionContainer}>
-                        <h2>mission status</h2>
+                        <div>
+                            <MissionContainer/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -42,7 +45,7 @@ class Dashboard extends Component {
                 flexFlow: 'row wrap',
                 justifyContent: 'center',
                 backgroundColor: 'grey',
-                height: 400,
+                height: 600,
                 width: 1200,
                 margin: 'auto'
             }
