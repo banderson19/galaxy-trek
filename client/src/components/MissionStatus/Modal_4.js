@@ -22,7 +22,7 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-class Modal_3 extends Component{
+class Modal_4 extends Component{
   constructor(props) {
     super(props);
 
@@ -47,7 +47,7 @@ class Modal_3 extends Component{
 
   render() {
     const {setFuelLevel, decreaseFuelLevel, incrementStep} = this.props;
-    console.log('modal 3') 
+    console.log('modal 4') 
     return (
 
       <div>
@@ -59,7 +59,7 @@ class Modal_3 extends Component{
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <h2 ref={subtitle => this.subtitle = subtitle}>Warning: Pirates approaching. <br/>
+          <h2 ref={subtitle => this.subtitle = subtitle}>Warning: <br/>
           1. Evade them by going light speed <br/>
           2. Pay them off with 100 lbs of precious metals
           </h2>
@@ -87,4 +87,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {setFuelLevel , incrementStep, decreaseFuelLevel})(Modal_3);
+export default connect(mapStateToProps)(Modal_4);

@@ -11,6 +11,7 @@ import ShipPath from './ShipPath'
 import Modal_1 from './Modal_1';
 import Modal_2 from './Modal_2';
 import Modal_3 from './Modal_3';
+import Modal_4 from './Modal_4';
 
 Modal.setAppElement('#root');
 
@@ -48,7 +49,7 @@ class MissionContainer extends Component {
                 <div style={{ marginTop: 100}}>
                     {this.props.currentStep === 1 && <Modal_2/>}
                     {this.props.currentStep === 2 && <Modal_3/>}
-                    {/* {this.props.currentStep === 1 && <Modal_2/>} */}
+                    {this.props.currentStep === 3 && <Modal_4/>}
                 </div>
                 <ShipPath/>
                 

@@ -17,7 +17,7 @@ class LocationServices extends Component {
     componentDidMount = () => {
         axios({
             method: 'GET', 
-            url: 'http://localhost:4000/api/destinations'
+            url: 'http://localhost:4001/api/destinations'
         }).then(response => {
             console.log(444, response.data)
             this.setState({destinations: response.data})

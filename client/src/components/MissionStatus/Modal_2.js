@@ -64,6 +64,7 @@ class Modal_2 extends Component{
 
   render() {
     const {setFuelLevel} = this.props;
+    console.log('modal 2')
     return (
 
       <div>
