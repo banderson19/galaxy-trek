@@ -22,7 +22,7 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-class Modal_1 extends Component{
+class Modal_3 extends Component{
   constructor(props) {
     super(props);
 
@@ -78,4 +78,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {setFuelLevel , incrementStep})(Modal_1);
+export default connect(mapStateToProps, {setFuelLevel , incrementStep})(Modal_3);

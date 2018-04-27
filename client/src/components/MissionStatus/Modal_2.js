@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import { connect } from 'react-redux';
 
 
-import {setFuelLevel, incrementStep} from './../../ducks/reducers';
+import {setFuelLevel, incrementStep, resetStep} from './../../ducks/reducers';
 
 
 const customStyles = {
@@ -22,32 +22,44 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-class Modal_1 extends Component{
+class Modal_2 extends Component{
   constructor(props) {
     super(props);
 
     this.state = {
       modalIsOpen: false
     };
-
-    this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
   }
 
-  openModal() {
+  openModal = () => {
     this.setState({modalIsOpen: true});
   }
-
-  afterOpenModal() {
+  afterOpenModal = () => {
     // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#f00';
   }
-
-  closeModal() {
+  closeModal = () => {
     this.setState({modalIsOpen: false});
   }
 
+  astroField = () => {
+    let primeNumber = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+    let num = Math.floor(Math.random() * 100);
+    for (var i = 0; i < primeNumber.length; i++) {
+      console.log(primeNumber[i], num)
+      if (num == primeNumber[i]) {
+        this.props.setFuelLevel(80)
+        incrementStep()
+        alert('hell yah motha fucka')
+        return true;
+      }
+    }
+    this.props.setFuelLevel(0)
+    resetStep()
+    alert('Im sorry, but the person you dialed is unavailable. Please try again later')
+    console.log(resetStep())
+    return false;
+  }
   
 
   render() {
@@ -55,7 +67,7 @@ class Modal_1 extends Component{
     return (
 
       <div>
-        <button onClick={this.openModal}>DIfferent Stuff!</button>
+        <button onClick={this.openModal}>WARNING</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -63,12 +75,19 @@ class Modal_1 extends Component{
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <h2 ref={subtitle => this.subtitle = subtitle}>Are you sure you want to launch this mission?</h2>
+          <h2 ref={subtitle => this.subtitle = subtitle}>
+            Warning: Astroid field approaching. <br/> 
+            1. Travel safely around the astrofield, but burn more fuel. <br/>
+            2. Save your fuel for the jouney ahead, and test your skills by going through astrofield and risking death.
+          </h2>
             <button onClick={(e) => {
-              this.props.setFuelLevel(100)
+              this.props.setFuelLevel(65)
               this.props.incrementStep()
-            }} >Launch</button>
-            <button onClick={this.closeModal}>Abort mission</button>
+            }} >Fly around astrofield</button>
+            <button onClick={(e) => {
+              this.closeModal
+              this.astroField()
+              }}>Risk it for the bisquit!!</button>
         </Modal>
       </div>
     );
@@ -85,4 +104,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {setFuelLevel , incrementStep})(Modal_1);
+export default connect(mapStateToProps, {setFuelLevel , incrementStep})(Modal_2);

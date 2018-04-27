@@ -10,6 +10,7 @@ import { incrementStep } from '../../ducks/reducers'
 import ShipPath from './ShipPath'
 import Modal_1 from './Modal_1';
 import Modal_2 from './Modal_2';
+import Modal_3 from './Modal_3';
 
 Modal.setAppElement('#root');
 
@@ -38,7 +39,7 @@ class MissionContainer extends Component {
 
 
     render() {
-        console.log(111, this.props.currentStep)
+        console.log('current step', this.props.currentStep)
         return (
             <div>
                  <button onClick={() => this.setState({ showModal1: true})}>Launch this Mofo in space!!</button>
@@ -46,6 +47,8 @@ class MissionContainer extends Component {
                 <h1> Fuel Level: {this.props.fuelLevel} </h1>
                 <div style={{ marginTop: 100}}>
                     {this.props.currentStep === 1 && <Modal_2/>}
+                    {this.props.currentStep === 2 && <Modal_3/>}
+                    {/* {this.props.currentStep === 1 && <Modal_2/>} */}
                 </div>
                 <ShipPath/>
                 

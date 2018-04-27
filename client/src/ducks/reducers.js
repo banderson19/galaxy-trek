@@ -3,6 +3,7 @@ const initialState = {
     destination: {},
     fuelLevel: 0,
     currentStep: 0,
+    resetStep: 0,
     steps: [
         {
 
@@ -14,6 +15,7 @@ const SET_SPACESHIP = 'SET_SPACESHIP';
 const SET_DESTINATION = 'SET_DESTINATION';
 const SET_FUEL_LEVEL = 'SET_FUEL_LEVEL';
 const INCREMENT_STEP = 'INCREMENT_STEP';
+const RESET_STEP = 'RESET_STEP';
 
 function reducer(state = initialState, action) {
     switch(action.type) {
@@ -28,9 +30,12 @@ function reducer(state = initialState, action) {
         case SET_FUEL_LEVEL:
             console.log('action---> ', action)
             return Object.assign( {}, state, {fuelLevel: action.payload});
+
         case INCREMENT_STEP:
-            return Object.assign({}, state, {currentStep: ++state.currentStep})
-        
+            return Object.assign( {}, state, {currentStep: ++state.currentStep})
+
+        case RESET_STEP:
+            return Object.assign( {}, state, {resetStep: action.payload})
 
         default: return state;
     }
@@ -62,7 +67,14 @@ export function setFuelLevel (fuelLevel) {
 
 export function incrementStep () {
     return {
-        type: INCREMENT_STEP,
+        type: INCREMENT_STEP
+    }
+}
+
+export function resetStep () {
+    return {
+        type: RESET_STEP,
+        payload: resetStep
     }
 }
 
