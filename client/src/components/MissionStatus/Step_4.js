@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import { connect } from 'react-redux';
 
 
-import {setFuelLevel, incrementStep, decreaseFuelLevel} from './../../ducks/reducers';
+import {setFuelLevel, incrementStep, decreaseFuelLevel, increaseJewelsLbs} from './../../ducks/reducers';
 
 
 const customStyles = {
@@ -22,7 +22,7 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-class Modal_3 extends Component{
+class Step_4 extends Component{
   constructor(props) {
     super(props);
 
@@ -36,7 +36,6 @@ class Modal_3 extends Component{
     this.setState({modalIsOpen: true});
   }
   afterOpenModal = () => {
-    // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#f00';
   }
   closeModal = () =>  {
@@ -46,12 +45,12 @@ class Modal_3 extends Component{
   
 
   render() {
-    const {setFuelLevel, decreaseFuelLevel, incrementStep} = this.props;
-    console.log('modal 3') 
+    const {setFuelLevel, decreaseFuelLevel, incrementStep, increaseJewelsLbs} = this.props;
+    console.log('step 4') 
     return (
 
       <div>
-        <button onClick={this.openModal}>WARNING</button>
+        <button onClick={this.openModal}>UPDATE</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -59,24 +58,30 @@ class Modal_3 extends Component{
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <h2 ref={subtitle => this.subtitle = subtitle}>Warning: Pirates approaching. <br/>
-          1. Evade them by going light speed <br/>
-          2. Pay them off with 100 lbs of precious metals
+          <h2 ref={subtitle => this.subtitle = subtitle}>
+          You have successfully made it through all the obsticles the galaxy has thrown at you. 
           </h2>
             <button onClick={(e) => {
                 this.closeModal
-                decreaseFuelLevel(30)
+                setFuelLevel()
                 incrementStep()
-            }}>skirt skirt</button>
+                // increaseJewelsLbs()
+            }}>Coast on in</button>
             <button onClick={ (e) => {
                 this.closeModal
                 incrementStep()
-            }}>Pay up b*tch</button>
+                // increaseJewelsLbs()
+            }}>Light speed to safety</button>
         </Modal>
+        {/* add video of flying off into space */}
+        <div>
+          <h1>congrats on making it to ur destination</h1>
+        </div>
       </div>
     );
   }
 }
+// add jewels to each planet
 
 
 const mapStateToProps = (state) => {
@@ -87,4 +92,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {setFuelLevel , incrementStep, decreaseFuelLevel})(Modal_3);
+export default connect(mapStateToProps, {setFuelLevel, incrementStep, increaseJewelsLbs})(Step_4);

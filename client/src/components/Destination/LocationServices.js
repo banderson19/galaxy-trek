@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 import { getVerticalPosition, getHorizontalPosition } from './PositionUtility';
 import axios from 'axios';
 
@@ -36,9 +37,10 @@ class LocationServices extends Component {
                             ...styles.map,
                             top: destination.margin_top,
                             left: destination.margin_left
-                        }}
-                        >
-                        <button onClick={ (e) => setDestination(destination)}>{destination.name}</button>
+                        }}>
+                        <Link to="/dashboard">
+                            <button onClick={ (e) => setDestination(destination)}>{destination.name}</button>
+                        </Link>
                         {/* <p>{destination.name}</p> */}
                     </div>
                 ))}

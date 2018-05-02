@@ -5,12 +5,14 @@ const initialState = {
     decreaseFuelLevel: 0,
     currentStep: 0,
     resetStep: 0,
-    steps: [
-        {
+    // steps: [
+    //     {
 
-        }
-    ],
-    jewelsLbs: 5000
+    //     }
+    // ],
+    jewelsLbs: 5000,
+    decreaseJewelsLbs: 0,
+    increaseJewelsLbs: 0
 }
 
 const SET_SPACESHIP = 'SET_SPACESHIP';
@@ -19,7 +21,9 @@ const SET_FUEL_LEVEL = 'SET_FUEL_LEVEL';
 const INCREMENT_STEP = 'INCREMENT_STEP';
 const RESET_STEP = 'RESET_STEP';
 const DECREASE_FUEL_LEVEL = 'DECREASE_FUEL_LEVEL';
-const JEWELS_LBS = 'JEWELS_LBS';
+const SET_JEWELS_LBS = 'SET_JEWELS_LBS';
+const DECREASE_JEWELS_LBS = 'DECREASE_JEWELS_LBS';
+const INCREASE_JEWELS_LBS = 'INCREASE_JEWELS_LBS';
 
 function reducer(state = initialState, action) {
     switch(action.type) {
@@ -39,10 +43,19 @@ function reducer(state = initialState, action) {
             return Object.assign( {}, state, {currentStep: ++state.currentStep})
 
         case RESET_STEP:
-            return Object.assign( {}, state, {resetStep: action.payload})
+            return Object.assign( {}, state, {currentStep: action.payload})
 
         case DECREASE_FUEL_LEVEL: 
             return Object.assign( {}, state, {decreaseFuelLevel: state.fuelLevel-=action.payload})
+
+        case SET_JEWELS_LBS: 
+            return Object.assign( {}, state, {jewels: action.payload})
+        
+        case DECREASE_JEWELS_LBS: 
+            return Object.assign( {}, state, {decreaseJewelsLbs: state.jewelsLbs-=action.payload})
+        
+        case INCREASE_JEWELS_LBS:
+            return Object.assign( {}, state, {increaseJewelsLbs: state.jewelsLbs+=action.payload})
 
         default: return state;
     }
@@ -55,7 +68,6 @@ export function setSpaceship (spaceship) {
         payload: spaceship
     }
 }
-
 export function setDestination (destination) {
     console.log('destination ---> ', destination)
     return {
@@ -63,7 +75,6 @@ export function setDestination (destination) {
         payload: destination
     }
 }
-
 export function setFuelLevel (fuelLevel) {
     console.log('fuelLevel ---> ', fuelLevel)
     return {
@@ -71,24 +82,42 @@ export function setFuelLevel (fuelLevel) {
         payload: fuelLevel
     }
 }
-
 export function incrementStep () {
     return {
         type: INCREMENT_STEP
     }
 }
-
 export function resetStep () {
     return {
         type: RESET_STEP,
         payload: resetStep
     }
 }
-
 export function decreaseFuelLevel(num) {
     console.log('deceased fuel level by ---> ', num)
     return {
         type: DECREASE_FUEL_LEVEL,
+        payload: num
+    }
+}
+export function setJewelsLbs(jewels) {
+    console.log('jewels prop --> ', jewels)
+    return {
+        type: SET_JEWELS_LBS,
+        payload: jewels
+    }
+}
+export function decreaseJewelsLbs(num) {
+    console.log('decreased jewels poundage by --> ', num)
+    return {
+        type: DECREASE_JEWELS_LBS,
+        payload: num
+    }
+}
+export function increaseJewelsLbs(num) {
+    console.log('increased jewels poundage by --> ', num) 
+    return {
+        type: INCREASE_JEWELS_LBS,
         payload: num
     }
 }

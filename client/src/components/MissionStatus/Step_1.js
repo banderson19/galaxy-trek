@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import { connect } from 'react-redux';
 
 
-import {setFuelLevel, incrementStep, decreaseFuelLevel} from './../../ducks/reducers';
+import {setFuelLevel, incrementStep, resetStep} from './../../ducks/reducers';
 
 
 const customStyles = {
@@ -22,7 +22,7 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-class Modal_4 extends Component{
+class Step_1 extends Component{
   constructor(props) {
     super(props);
 
@@ -32,46 +32,40 @@ class Modal_4 extends Component{
   }
 
   openModal = () => {
-    console.log('hi everyone')
     this.setState({modalIsOpen: true});
   }
   afterOpenModal = () => {
-    // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#f00';
   }
   closeModal = () =>  {
     this.setState({modalIsOpen: false});
+    console.log(this.state)
   }
 
   
 
   render() {
-    const {setFuelLevel, decreaseFuelLevel, incrementStep} = this.props;
-    console.log('modal 4') 
+    const {setFuelLevel, incrementStep, resetStep} = this.props;
+    console.log(this.props.currentStep)
     return (
 
       <div>
-        <button onClick={this.openModal}>WARNING</button>
+        
         <Modal
-          isOpen={this.state.modalIsOpen}
+          isOpen={this.props.showModal}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <h2 ref={subtitle => this.subtitle = subtitle}>Warning: <br/>
-          1. Evade them by going light speed <br/>
-          2. Pay them off with 100 lbs of precious metals
-          </h2>
+          <h2 ref={subtitle => this.subtitle = subtitle}>Are you sure you want to launch this mission?</h2>
             <button onClick={(e) => {
-                this.closeModal
-                decreaseFuelLevel(30)
-                incrementStep()
-            }}>skirt skirt</button>
+              setFuelLevel(100)
+              incrementStep()
+            }} >Launch</button>
             <button onClick={ (e) => {
-                this.closeModal
-                incrementStep()
-            }}>Pay up b*tch</button>
+              resetStep()
+              }}>Abort mission</button>
         </Modal>
       </div>
     );
@@ -80,11 +74,12 @@ class Modal_4 extends Component{
 
 
 const mapStateToProps = (state) => {
-  const {fuelLevel} = state;
+  const {fuelLevel, resetStep} = state;
 
   return {
-      fuelLevel
+      fuelLevel,
+      resetStep
   }
 }
 
-export default connect(mapStateToProps)(Modal_4);
+export default connect(mapStateToProps, {setFuelLevel, incrementStep, resetStep})(Step_1);

@@ -22,7 +22,7 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-class Modal_2 extends Component{
+class Step_2 extends Component{
   constructor(props) {
     super(props);
 
@@ -35,7 +35,6 @@ class Modal_2 extends Component{
     this.setState({modalIsOpen: true});
   }
   afterOpenModal = () => {
-    // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#f00';
   }
   closeModal = () => {
@@ -48,23 +47,22 @@ class Modal_2 extends Component{
     for (var i = 0; i < primeNumber.length; i++) {
       console.log(primeNumber[i], num)
       if (num == primeNumber[i]) {
+        alert('hell yah motha fucka')
         this.props.setFuelLevel(80)
         incrementStep()
-        alert('hell yah motha fucka')
         return true;
       }
     }
+    alert('Im sorry, but the person you dialed is unavailable. Please try again later')
     this.props.setFuelLevel(0)
     resetStep()
-    alert('Im sorry, but the person you dialed is unavailable. Please try again later')
-    console.log(resetStep())
+    console.log('current step', resetStep())
     return false;
   }
-  
+  // add to function that reset the steps back to zero
 
   render() {
     const {setFuelLevel} = this.props;
-    console.log('modal 2')
     return (
 
       <div>
@@ -105,4 +103,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {setFuelLevel , incrementStep})(Modal_2);
+export default connect(mapStateToProps, {setFuelLevel , incrementStep})(Step_2);

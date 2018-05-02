@@ -16,7 +16,7 @@ class Market extends Component {
     componentDidMount = () => {
         axios({
             method: 'GET', 
-            url: 'http://localhost:3030/api/spaceships'
+            url: 'http://localhost:4001/api/spaceships'
         }).then(response => {
             console.log(222, response.data)
             this.setState({spaceships: response.data})
@@ -41,7 +41,9 @@ class Market extends Component {
                                     width: 400,
                                     height: 300}}>
                                 </div>
-                                <button onClick={ (e) => setSpaceship(spaceship)}>Set your spaceship as {spaceship.name}</button>
+                                <Link to="/dashboard">
+                                    <button onClick={(e) => setSpaceship(spaceship)}>Set your spaceship as {spaceship.name}</button>
+                                </Link>
                             </div>
                         )
                     })}

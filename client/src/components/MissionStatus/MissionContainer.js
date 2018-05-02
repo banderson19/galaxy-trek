@@ -3,15 +3,15 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import Modal from 'react-modal';
-import { incrementStep } from '../../ducks/reducers'
+import { incrementStep, setJewelsLbs } from '../../ducks/reducers'
 // import ReactDOM from 'react-dom';
 // import bootbox from 'bootbox';
 
 import ShipPath from './ShipPath'
-import Modal_1 from './Modal_1';
-import Modal_2 from './Modal_2';
-import Modal_3 from './Modal_3';
-import Modal_4 from './Modal_4';
+import Step_1 from './Step_1';
+import Step_2 from './Step_2';
+import Step_3 from './Step_3';
+import Step_4 from './Step_4';
 
 Modal.setAppElement('#root');
 
@@ -20,7 +20,7 @@ class MissionContainer extends Component {
         super(props);
         
         this.state = {
-            showModal: false
+            showModal: false,
         };
     }
 
@@ -44,12 +44,13 @@ class MissionContainer extends Component {
         return (
             <div>
                  <button onClick={() => this.setState({ showModal1: true})}>Launch this Mofo in space!!</button>
-                {this.props.currentStep === 0 && <Modal_1 showModal={this.state.showModal1} />}
+                {this.props.currentStep === 0 && <Step_1 showModal={this.state.showModal1} />}
                 <h1> Fuel Level: {this.props.fuelLevel} </h1>
+                <h1> Jewels: {this.props.jewelsLbs} lbs</h1>
                 <div style={{ marginTop: 100}}>
-                    {this.props.currentStep === 1 && <Modal_2/>}
-                    {this.props.currentStep === 2 && <Modal_3/>}
-                    {this.props.currentStep === 3 && <Modal_4/>}
+                    {this.props.currentStep === 1 && <Step_2/>}
+                    {this.props.currentStep === 2 && <Step_3/>}
+                    {this.props.currentStep === 3 && <Step_4/>}
                 </div>
                 <ShipPath/>
                 
@@ -78,8 +79,9 @@ class MissionContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         fuelLevel: state.fuelLevel,
-        currentStep: state.currentStep
+        currentStep: state.currentStep,
+        jewelsLbs: state.jewelsLbs
     }
 }
 
-export default connect(mapStateToProps, {incrementStep})(MissionContainer);
+export default connect(mapStateToProps, {incrementStep, setJewelsLbs})(MissionContainer);
