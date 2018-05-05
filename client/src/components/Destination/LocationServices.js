@@ -11,7 +11,8 @@ class LocationServices extends Component {
     constructor() {
         super()
         this.state = {
-            destinations: []
+            destinations: [],
+            icon: ''
         }
     }
 
@@ -28,22 +29,38 @@ class LocationServices extends Component {
     render() {
         const {setDestination} = this.props;
         const styles = this.styles();
+      
         return (
-            <div style={styles.window}>
-                {this.state.destinations.map((destination, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            ...styles.map,
-                            top: destination.margin_top,
-                            left: destination.margin_left
-                        }}>
-                        <Link to="/dashboard">
-                            <button onClick={ (e) => setDestination(destination)}>{destination.name}</button>
-                        </Link>
-                        {/* <p>{destination.name}</p> */}
-                    </div>
-                ))}
+            <div>
+                <div style={styles.window}>
+                    {this.state.destinations.map((destination, index) => {
+                       var type = ''
+                       if (destination.type === 'Planet') {
+                           type = 'fas fa-globe';
+                       } else {
+                           type = 'fas fa-star';
+                       }
+                       return <div
+                            key={index}
+                            style={{
+                                ...styles.map,
+                                top: destination.margin_top,
+                                left: destination.margin_left
+                            }}>
+                            <Link to="/dashboard">
+                                <button onClick={ (e) => setDestination(destination)}>
+                                    <div>
+                                            <i className={type}>
+                                                {destination.name}
+                                            </i>   
+                                    
+                                    </div>
+                                </button>
+                            </Link>
+                        </div>
+                        
+    })}
+                </div>
             </div>
         )
     }
@@ -55,7 +72,7 @@ class LocationServices extends Component {
             },
             window: {
                 display: 'flex',
-                width: 800,
+                width: 1100,
                 height: 500,
                 backgroundColor: 'grey',
                 margin: 'auto'

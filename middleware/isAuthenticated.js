@@ -1,4 +1,5 @@
 module.exports = function(req, res, next) {
+  console.log(1111)
     if (req.isAuthenticated()) {
       console.log('authentication passed') 
       return next();

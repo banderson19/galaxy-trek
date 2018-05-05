@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import SpaceshipContainer from './SpaceshipContainer';
 import DestinationContainer from './DestinationContainer';
 import MissionContainer from './../MissionStatus/MissionContainer';
-
+import LocationServices from './../Destination/LocationServices';
 
 class Dashboard extends Component {
 
@@ -18,7 +18,7 @@ class Dashboard extends Component {
                 </div>
                 <div>
                     <div style={styles.mainContainer}>
-                        <SpaceshipContainer/>    
+                        <SpaceshipContainer/>   
                         <DestinationContainer/>
                     </div>
                     <div style={styles.missionContainer}>

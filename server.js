@@ -101,6 +101,8 @@ app.get("/auth/me", (req, res) => {
 });
 
 app.get('/api/spaceships', SpaceshipsController.getAll)
+app.post('/api/spaceships', SpaceshipsController.createSpaceship)
+
 app.get('/api/destinations', DestinationsController.getAll)
 
 // app.get("/api/locations", isAuthenticated, LocationsController.get);
