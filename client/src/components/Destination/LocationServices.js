@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import { getVerticalPosition, getHorizontalPosition } from './PositionUtility';
 import axios from 'axios';
 
 import {setDestination} from './../../ducks/reducers';
@@ -31,7 +30,7 @@ class LocationServices extends Component {
         const styles = this.styles();
       
         return (
-            <div>
+            <div style={styles.body}>
                 <div style={styles.window}>
                     {this.state.destinations.map((destination, index) => {
                        var type = ''
@@ -45,11 +44,14 @@ class LocationServices extends Component {
                             style={{
                                 ...styles.map,
                                 top: destination.margin_top,
-                                left: destination.margin_left
+                                left: destination.margin_left,
+                                height: 10
                             }}>
                             <Link to="/dashboard">
                                 <button onClick={ (e) => setDestination(destination)}>
-                                    <div>
+                                    <div style={{
+                                        fontSize: 20
+                                        }}>
                                             <i className={type}>
                                                 {destination.name}
                                             </i>   
@@ -73,9 +75,11 @@ class LocationServices extends Component {
             window: {
                 display: 'flex',
                 width: 1100,
-                height: 500,
-                backgroundColor: 'grey',
+                height: 600,
                 margin: 'auto'
+            },
+            body: {
+                odacity: 0.5
             }
         }
     }

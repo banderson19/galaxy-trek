@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-
-
+import './shipPath.css';
 
 class ShipPath extends Component{
 
@@ -10,11 +9,11 @@ class ShipPath extends Component{
       const { currentStep } = this.props
     return (
 
-      <div style={{width: '100%', display: 'relative', height: 200, border: '1px solid green'}}>
-        {currentStep >= 0 && <div style={{width: 20, height: 2, backgroundColor: 'red', position: 'relative', top: 10, left: 0 }}></div>}
-        {currentStep >= 1 && <div style={{width: 20, height: 2, backgroundColor: 'red', position: 'relative', top: 10, left: 30 }}></div>}
-        {currentStep >= 2 && <div style={{width: 20, height: 2, backgroundColor: 'red', position: 'relative', top: 10, left: 60 }}></div>}
-        {currentStep >= 3 && <div style={{width: 20, height: 2, backgroundColor: 'red', position: 'relative', top: 10, left: 90 }}></div>}
+      <div className="displayBox">
+        {currentStep >= 0 && <div className="stepOne"></div>}
+        {currentStep >= 1 && <div className="stepTwo"></div>}
+        {currentStep >= 2 && <div className="stepThree"></div>}
+        {currentStep >= 3 && <div className="stepFour"></div>}
       </div>
     );
     

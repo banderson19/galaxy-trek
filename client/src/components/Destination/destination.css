@@ -1,0 +1,13 @@
+.body {
+    background-image: url('./../../img/background_light_speed.jpg');
+    background-size: 'auto';
+    background-position: 'center';
+    background-repeat: 'no-repeat';
+    margin-top: 0px;
+    padding-bottom: 20px;
+}
+.destination_header {
+    color: white;
+    margin-top: 0px;
+    padding-top: 10px;
+}

@@ -5,6 +5,9 @@ import axios from 'axios';
 
 import {setSpaceship, createSpaceship, getSpaceships} from './../../ducks/reducers';
 
+import starship_hanger from './../../img/starship_hanger.png';
+import './market.css'
+
 class Market extends Component {
     constructor() {
         super()
@@ -17,6 +20,7 @@ class Market extends Component {
 
 
     componentDidMount = () => {
+        console.log('getting here')
         this.props.getSpaceships()
         // axios({
         //     method: 'GET', 
@@ -49,47 +53,64 @@ class Market extends Component {
         console.log(9999, this.props)
         return(
             <div>
-                <h2>Market place</h2>
-                <Link to="/dashboard"><button>Back to Dashboard</button></Link>
-                <div style={styles.shipContainer}>                
-                    {this.props.spaceshipsData.map(spaceship => {
-                        return (
-                            <div key={spaceship.id}>
-                                <h3> {spaceship.name} </h3>
-                                <div style={{
-                                    backgroundImage: `url(${spaceship.img})`,
-                                    backgroundPosition: 'center',
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat',
-                                    width: 400,
-                                    height: 300,
-                                    margin: 10
-                                    }}>
-                                </div>
-                                <Link to="/dashboard">
-                                    <button onClick={(e) => setSpaceship(spaceship)}>Set your spaceship as {spaceship.name}</button>
-                                </Link>
-                            </div>
-                        )
-                    })}
+                <div className="header">
+                    <h2>CHOOSE YOUR SHIP</h2>
+                    <Link to="/dashboard"><button>Back to Dashboard</button></Link>
                 </div>
-                <div style={styles.newShipContainer}>
-                    <h3>Add New Ship</h3>
-                    <input onChange={this.handleNameInput} placeholder="Ship Name"/><br/>
-                    <input onChange={this.handleImgInput} placeholder="Url Img"/><br/>
-                    <button onClick={this.createSpaceship}>Save Ship</button>
+                <div style={styles.mainContainer}>
+                    <div style={styles.shipContainer}>                
+                        {this.props.spaceshipsData.map(spaceship => {
+                            return (
+                                <div key={spaceship.id}>
+                                    <h3 style={{fontWeight:'bold', color: 'white'}}> {spaceship.name} </h3>
+                                    <div className="image" style={{
+                                        backgroundImage: `url(${spaceship.img})`,
+                                        backgroundPosition: 'center',
+                                        backgroundSize: 'cover',
+                                        backgroundRepeat: 'no-repeat',
+                                        width: 400,
+                                        height: 300,
+                                        margin: 10
+                                        }}>
+                                        <div className="middle">
+                                            {/* <div className="text">set as spaceship </div> */}
+                                            <Link className="text" to="/dashboard">
+                                                <button className="button" onClick={(e) => setSpaceship(spaceship)}>Set your spaceship as <br/> {spaceship.name}</button>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        <div style={styles.newShipContainer}>
+                            <h3>Add New Ship</h3>
+                            <input onChange={this.handleNameInput} placeholder="Ship Name"/><br/>
+                            <input onChange={this.handleImgInput} placeholder="Url Img"/><br/>
+                            <button onClick={this.createSpaceship}>Save Ship</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
     }
-
+    
     styles = () => {
             return {
+                mainContainer: {
+                    display: 'flex',
+                    justifyItems: 'spaceAround',
+                    backgroundImage: `url(${starship_hanger})`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                },  
                 shipContainer: {
                     display: 'flex',
                     flexFlow: 'row wrap',
-                    justifyContent: 'spaceAround',
-                    alignContent: 'center'
+                    position: 'relative',
+                    alignContent: 'center',
+                    marginLeft: 40,
+                    marginRight: 'auto'
                 },
                 newShipContainer: {
                     width: 400, 

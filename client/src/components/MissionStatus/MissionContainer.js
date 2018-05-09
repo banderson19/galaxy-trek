@@ -7,6 +7,8 @@ import { incrementStep, setJewelsLbs } from '../../ducks/reducers'
 // import ReactDOM from 'react-dom';
 // import bootbox from 'bootbox';
 
+import './missionContainer.css'
+
 import ShipPath from './ShipPath'
 import Step_1 from './Step_1';
 import Step_2 from './Step_2';
@@ -42,7 +44,7 @@ class MissionContainer extends Component {
     render() {
         console.log('current step', this.props.currentStep)
         return (
-            <div>
+            <div className="containerBox">
                  <button onClick={() => this.setState({ showModal1: true})}>Launch this Mofo in space!!</button>
                 {this.props.currentStep === 0 && <Step_1 showModal={this.state.showModal1} />}
                 <h1> Fuel Level: {this.props.fuelLevel} </h1>

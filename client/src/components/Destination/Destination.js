@@ -5,6 +5,11 @@ import axios from 'axios';
 
 import LocationServices from './LocationServices';
 
+import './destination.css';
+
+import background_space from './../../img/background_space.jpg';
+
+
 // import {setSpaceship} from './../../ducks/reducers';
 
 class Destination extends Component {
@@ -14,9 +19,11 @@ class Destination extends Component {
 
     render() {
         return(
-            <div>
-                <h1>Destination page</h1>
-                <Link to="/dashboard"><button>Back to Dashboard</button></Link>
+            <div className="body">
+                <div className="destination_header">
+                    <h1>Destination page</h1>
+                    <Link to="/dashboard"><button>Back to Dashboard</button></Link>
+                </div>
                 <LocationServices/>
             </div>
         )
