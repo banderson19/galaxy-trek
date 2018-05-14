@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
+import ShipComponent from './ShipComponent'
 import {setSpaceship, createSpaceship, getSpaceships} from './../../ducks/reducers';
 
 import starship_hanger from './../../img/starship_hanger.png';
@@ -20,7 +21,7 @@ class Market extends Component {
 
 
     componentDidMount = () => {
-        console.log('getting here')
+        console.log('getting here', this.spaceshipsData)
         this.props.getSpaceships()
         // axios({
         //     method: 'GET', 
@@ -42,7 +43,6 @@ class Market extends Component {
     }
 
     createSpaceship = () => {
-        console.log('here')
         let { name, img } = this.state
         createSpaceship({ name, img })
     }
@@ -50,7 +50,7 @@ class Market extends Component {
     render() {
         const {setSpaceship, createSpaceship} = this.props;
         const styles = this.styles();
-        console.log(9999, this.props)
+        const {spaceship, editName, editReady} = this.props;
         return(
             <div>
                 <div className="header">
@@ -60,26 +60,13 @@ class Market extends Component {
                 <div style={styles.mainContainer}>
                     <div style={styles.shipContainer}>                
                         {this.props.spaceshipsData.map(spaceship => {
+                            console.log(spaceship)
                             return (
-                                <div key={spaceship.id}>
-                                    <h3 style={{fontWeight:'bold', color: 'white'}}> {spaceship.name} </h3>
-                                    <div className="image" style={{
-                                        backgroundImage: `url(${spaceship.img})`,
-                                        backgroundPosition: 'center',
-                                        backgroundSize: 'cover',
-                                        backgroundRepeat: 'no-repeat',
-                                        width: 400,
-                                        height: 300,
-                                        margin: 10
-                                        }}>
-                                        <div className="middle">
-                                            {/* <div className="text">set as spaceship </div> */}
-                                            <Link className="text" to="/dashboard">
-                                                <button className="button" onClick={(e) => setSpaceship(spaceship)}>Set your spaceship as <br/> {spaceship.name}</button>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
+                             
+                                    <ShipComponent 
+                                        spaceship={spaceship} 
+                                        key={spaceship.id}
+                                        />
                             )
                         })}
                         <div style={styles.newShipContainer}>

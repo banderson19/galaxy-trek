@@ -102,6 +102,8 @@ app.get("/auth/me", (req, res) => {
 
 app.get('/api/spaceships', SpaceshipsController.getAll)
 app.post('/api/spaceships', SpaceshipsController.createSpaceship)
+app.put('/api/spaceships/id', SpaceshipsController.editSpaceshipName)
+app.delete('/api/spaceships/id', SpaceshipsController.delete)
 
 app.get('/api/destinations', DestinationsController.getAll)
 

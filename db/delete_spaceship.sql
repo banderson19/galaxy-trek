@@ -1,0 +1,1 @@
+DELETE FROM spaceships WHERE id=$1;

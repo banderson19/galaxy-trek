@@ -1,8 +1,10 @@
 import axios from 'axios';
 
 const initialState = {
+    //spaceship handler
     spaceship: {},
     spaceshipsData: [],
+    spaceshipName: '',
     destination: {},
     fuelLevel: 0,
     decreaseFuelLevel: 0,
@@ -16,11 +18,11 @@ const initialState = {
     jewelsLbs: 5000,
     decreaseJewelsLbs: 0,
     increaseJewelsLbs: 0
-    //spaceship handler
 }
 
 const SET_SPACESHIP = 'SET_SPACESHIP';
 const GET_SPACESHIPS = 'GET_SPACESHIPS';
+const EDIT_SPACESHIP_NAME = 'EDIT_SPACESHIP_NAME';
 const SET_DESTINATION = 'SET_DESTINATION';
 const SET_FUEL_LEVEL = 'SET_FUEL_LEVEL';
 const INCREMENT_STEP = 'INCREMENT_STEP';
@@ -30,6 +32,7 @@ const SET_JEWELS_LBS = 'SET_JEWELS_LBS';
 const DECREASE_JEWELS_LBS = 'DECREASE_JEWELS_LBS';
 const INCREASE_JEWELS_LBS = 'INCREASE_JEWELS_LBS';
 const CREATE_SPACESHIP = 'CREATE_SPACESHIP';
+const DELETE_SPACESHIP = 'DELETE_SPACESHIP';
 
 function reducer(state = initialState, action) {
     switch(action.type) {
@@ -41,8 +44,16 @@ function reducer(state = initialState, action) {
             return Object.assign( {}, state, {spaceshipsData: action.payload.data})
 
         case GET_SPACESHIPS + '_FULFILLED':
-        console.log('action---> ', action)
+        console.log('action---> 111', action)
             return Object.assign( {}, state, {spaceshipsData: action.payload.data}) 
+
+        case EDIT_SPACESHIP_NAME + '_FULFILLED':
+        console.log('action---> ', action)
+            return Object.assign( {}, state, {spaceshipName: action.payload.data})
+
+        case DELETE_SPACESHIP + '_FULFILLED':
+        console.log('delete action --> ', action)
+            return Object.assign( {}, state, {spaceshipsData: action.payload})
 
         case (SET_DESTINATION):
             console.log('action---> ', action)
@@ -98,6 +109,25 @@ export function getSpaceships() {
         payload: axios.get('http://localhost:4001/api/spaceships')
     }
 }
+
+export function editSpaceshipName(spaceshipName) {
+    console.log('spaceships new name --> ', spaceshipName)
+    return {
+        type: EDIT_SPACESHIP_NAME,
+        payload: axios.put(`http://localhost:4001/api/spaceships/id`, spaceshipName)
+    }
+}
+
+export function deleteSpaceship(id) {
+    console.log('spaceship is deleted') 
+    return {
+        type: DELETE_SPACESHIP,
+        payload: axios.delete(`http://localhost:4001/api/spaceships/id`, id)
+    }
+}
+
+
+
 //mission handler
 export function setDestination (destination) {
     console.log('destination ---> ', destination)
