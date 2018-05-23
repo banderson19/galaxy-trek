@@ -11,9 +11,7 @@ class ShipComponent extends Component {
         super()
         this.state = {
             editReady: false,
-            name: null,
-            spaceship: {},
-            spaceshipsData: []
+            name: null
         }
     }
 
@@ -27,21 +25,14 @@ class ShipComponent extends Component {
         })
     }
 
-    // editSpacehipName = () => {
-    //     console.log(this.props.spaceship)
-    //     let {name} = this.state;
-    //     editSpaceshipName({name})
-    // }
-
     updatePost = () => {
-        let body = {
-            name: this.state.name
-        }
-        editSpaceshipName(body)
+        let { name } = this.state
+
+        editSpaceshipName(name)
     }
 
     render() {
-        console.log(1111, this.spaceshipsData)
+        console.log(114, this.props.spaceship)
         return (
               <div> 
                   <div> 
@@ -50,7 +41,7 @@ class ShipComponent extends Component {
                       {this.state.editReady == true && 
                         <div>
                             <input onChange={(e) => {this.nameChange(e.target.value)}} placeholder="New Ship Name"/>
-                            <button onClick={this.editSpaceshipName}>update</button>
+                            <button onClick={this.updatePost()}>update</button>
                         </div>}
 
                       <button onClick={() => this.editName()}>

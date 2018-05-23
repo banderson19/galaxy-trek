@@ -24,6 +24,7 @@ module.exports = {
     },
     editSpaceshipName: (req, res, next) => {
         console.log('editing name here', req.body) 
+        console.log(45454, req.params)
         const dbInstance = req.app.get('db');
         const {params, query} = req;
 

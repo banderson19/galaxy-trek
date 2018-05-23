@@ -21,7 +21,6 @@ massive(process.env.CONNECTION_STRING).then(db => {
   app.set("db", db);
 });
 
-
 app.use(bodyParser.json());
 app.use(cors());
 app.use(
@@ -34,6 +33,9 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use( express.static( `${__dirname}/client/build` ) );
+
 
 passport.use(
   new Auth0Strategy(
@@ -86,8 +88,8 @@ app.get("/auth", passport.authenticate("auth0"));
 app.get(
   "/auth/callback",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/dashboard",
-    failureRedirect: "http://localhost:3000/#/login"
+    successRedirect: "/#/dashboard",
+    failureRedirect: "/#/login"
   })
 );
 

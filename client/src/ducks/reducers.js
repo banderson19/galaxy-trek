@@ -49,7 +49,7 @@ function reducer(state = initialState, action) {
 
         case EDIT_SPACESHIP_NAME + '_FULFILLED':
         console.log('action---> ', action)
-            return Object.assign( {}, state, {spaceshipName: action.payload.data})
+            return Object.assign( {}, state, {spaceshipName: action.payload})
 
         case DELETE_SPACESHIP + '_FULFILLED':
         console.log('delete action --> ', action)
@@ -99,22 +99,22 @@ export function createSpaceship(newSpaceship) {
     console.log('new ship created', newSpaceship)
     return {
         type: CREATE_SPACESHIP,
-        payload: axios.post('http://localhost:4001/api/spaceships', newSpaceship)
+        payload: axios.post('/api/spaceships', newSpaceship)
     }
 }
 export function getSpaceships() {
     console.log('gathering the fleet')
     return {
         type: GET_SPACESHIPS,
-        payload: axios.get('http://localhost:4001/api/spaceships')
+        payload: axios.get('/api/spaceships')
     }
 }
 
-export function editSpaceshipName(spaceshipName) {
-    console.log('spaceships new name --> ', spaceshipName)
+export function editSpaceshipName(newSpaceshipName) {
+    console.log('spaceships new name --> ', newSpaceshipName)
     return {
         type: EDIT_SPACESHIP_NAME,
-        payload: axios.put(`http://localhost:4001/api/spaceships/id`, spaceshipName)
+        payload: axios.put(`/api/spaceships/id`, newSpaceshipName)
     }
 }
 
@@ -122,7 +122,7 @@ export function deleteSpaceship(id) {
     console.log('spaceship is deleted') 
     return {
         type: DELETE_SPACESHIP,
-        payload: axios.delete(`http://localhost:4001/api/spaceships/id`, id)
+        payload: axios.delete(`/api/spaceships/id`, id)
     }
 }
 

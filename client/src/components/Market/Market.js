@@ -14,6 +14,7 @@ class Market extends Component {
         super()
         this.state= {
             spaceshipsData: [],
+
             name: null,
             img: null
         }
@@ -23,13 +24,6 @@ class Market extends Component {
     componentDidMount = () => {
         console.log('getting here', this.spaceshipsData)
         this.props.getSpaceships()
-        // axios({
-        //     method: 'GET', 
-        //     url: 'http://localhost:4001/api/spaceships'
-        // }).then(response => {
-        //     console.log(222, response.data)
-        //     this.setState({spaceships: response.data})
-        // })
     }
 
     handleNameInput = (e) => {
